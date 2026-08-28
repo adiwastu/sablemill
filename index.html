@@ -396,15 +396,16 @@
         toastMsg.innerHTML = messageHtml;
         toastCta.hidden = !cta;
         toastProgress.hidden = !progress;
-        if (progress) {
-          progressFill.style.transition = "none";
-          progressFill.style.width = "0%";
-          void toastProgress.offsetWidth; // force the reset to apply
-        }
         toast.hidden = false;
         requestAnimationFrame(() => {
           toast.classList.add("toast-show");
           if (progress) {
+            // Reset the fill to 0% while the toast is VISIBLE and force a
+            // reflow, so the 0% state is a real rendered style. Otherwise
+            // the width transition has no "before" value and never runs.
+            progressFill.style.transition = "none";
+            progressFill.style.width = "0%";
+            void toastProgress.offsetWidth;
             progressFill.style.transition = `width ${NAV_DURATION}ms linear`;
             progressFill.style.width = "100%";
           }
