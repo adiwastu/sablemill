@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sable Mill — indie software &amp; toys</title>
+    <meta
+      name="description"
+      content="Sable Mill — a small collection of indie software, toys, and experiments."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e14'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-style='italic' fill='%23e8e9ec' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --bg: #0b0e14;
+        --fg: #e8e9ec;
+        --fg-dim: #8b93a3;
+        --accent: #8b9dc3;
+        --card: #131722;
+        --card-border: #262b38;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header,
+      main,
+      footer {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      header {
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 2.6rem;
+        letter-spacing: 0.01em;
+      }
+
+      .tagline {
+        margin: 0.35rem 0 0;
+        color: var(--fg-dim);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      h2 {
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--fg-dim);
+        margin: 0 0 0.9rem;
+      }
+
+      .works {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 1.1rem 1.2rem;
+        transition: border-color 0.15s ease, transform 0.15s ease;
+      }
+
+      .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+
+      .card h3 {
+        margin: 0 0 0.3rem;
+        font-size: 1.05rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--fg-dim);
+        font-size: 0.9rem;
+      }
+
+      .tag {
+        display: inline-block;
+        margin-top: 0.55rem;
+        padding: 0.12rem 0.5rem;
+        border: 1px solid var(--card-border);
+        border-radius: 999px;
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .soon {
+        color: var(--fg-dim);
+        font-size: 0.85rem;
+        margin: 1.4rem 0 0;
+      }
+
+      footer {
+        padding: 3rem 1.25rem 2.5rem;
+        color: var(--fg-dim);
+        font-size: 0.85rem;
+        display: flex;
+        gap: 1.2rem;
+      }
+
+      footer a {
+        color: var(--fg-dim);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+      }
+
+      footer a:hover {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sable Mill</h1>
+      <p class="tagline">indie software · toys · experiments</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Works</h2>
+        <div class="works">
+          <a class="card" href="https://scrambler.sablemill.is-a.dev">
+            <h3>Rubik&rsquo;s Cube Scrambler</h3>
+            <p>
+              Random-state 3&times;3 scrambles with custom holding orientation.
+            </p>
+            <span class="tag">toy app</span>
+          </a>
+        </div>
+        <p class="soon">more coming soon&hellip;</p>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://github.com/adiwastu">GitHub</a>
+      <a href="mailto:wasturaka@gmail.com">Contact</a>
+    </footer>
+  </body>
+</html>
