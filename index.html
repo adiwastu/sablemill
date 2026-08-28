@@ -230,7 +230,7 @@
         width: 100%;
         background: var(--white);
         border-bottom: 2px solid var(--black);
-        padding: 0.9rem 1.5rem;
+        padding: 0.9rem 1.5rem 1.9rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -267,19 +267,21 @@
         display: none;
       }
 
+      /* Old-school FLTK-style progress: a boxed, monochrome bar. */
       .toast-progress {
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 4px;
-        background: var(--grey-2);
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 0.55rem;
+        height: 12px;
+        border: 2px solid var(--black);
+        background: var(--white);
       }
 
       .toast-progress-fill {
         height: 100%;
         width: 0%;
-        background: var(--blue);
+        background: var(--black);
       }
 
       .toast-domain {
@@ -379,9 +381,8 @@
       const toastProgress = document.getElementById("toast-progress");
       const progressFill = document.getElementById("toast-progress-fill");
       const EMAIL = "wasturaka@gmail.com";
-      const NAV_DURATION = 5000; // fake "loading" animation length
+      const NAV_DURATION = 3500; // fake "loading" animation length
       let toastTimer;
-      let pendingPopup = null;
 
       function hideToast() {
         toast.classList.remove("toast-show");
@@ -435,28 +436,18 @@
         card.addEventListener("click", (e) => {
           e.preventDefault();
           const url = new URL(card.href, window.location.href);
-          // Open the tab NOW, synchronously inside the user gesture, so no
-          // popup blocker (Firefox especially) can reject it. It starts
-          // blank; we navigate it once the fake loading animation finishes.
-          if (pendingPopup && !pendingPopup.closed) {
-            try {
-              pendingPopup.close();
-            } catch {}
-          }
-          pendingPopup = window.open("", "_blank");
           showToast(
             `Heading to <strong class="toast-domain">${url.hostname}</strong>&hellip;`,
             {
               progress: true,
               onDone: () => {
-                if (pendingPopup && !pendingPopup.closed) {
-                  pendingPopup.location.href = url.href;
-                } else {
-                  // Popup blocked anyway (e.g. strict browser settings):
-                  // fall back to navigating this tab.
+                // 3.5s is still inside the browser's ~5s user-activation
+                // window, so this popup is allowed (no blank tab up front).
+                const popup = window.open(url.href, "_blank", "noopener");
+                if (!popup) {
+                  // Strict popup settings: fall back to this tab.
                   window.location.href = url.href;
                 }
-                pendingPopup = null;
               },
             },
           );
