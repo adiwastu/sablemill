@@ -186,18 +186,76 @@
         color: var(--grey-3);
         font-size: 1rem;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         gap: 1.5rem;
+        flex-wrap: wrap;
         border-top: 4px solid var(--black);
         margin-top: 3rem;
       }
 
-      footer a {
+      .copy-email {
+        appearance: none;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-family: inherit;
+        font-size: 1rem;
         color: var(--blue);
         text-decoration: underline;
         text-underline-offset: 2px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
       }
 
-      footer a:hover {
+      .copy-email:hover {
+        color: var(--black);
+      }
+
+      /* GOV.UK focus style */
+      .copy-email:focus-visible,
+      .toast-cta:focus-visible {
+        outline: 3px solid #ffdd00;
+        outline-offset: 2px;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translate(-50%, 0.5rem);
+        background: var(--white);
+        border: 2px solid var(--black);
+        padding: 0.9rem 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .toast[hidden] {
+        display: none;
+      }
+
+      .toast-show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      .toast-cta {
+        color: var(--blue);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        white-space: nowrap;
+      }
+
+      .toast-cta:hover {
         color: var(--black);
       }
     </style>
@@ -206,8 +264,8 @@
     <header>
       <h1>sable mill</h1>
       <p class="tagline">
-        In heraldry, sable is the deepest black. Sable Mill mills tools, toys,
-        both live and in-the-works, for posterity.
+        In heraldry, sable is the deepest black. Sable Mill mills tools and
+        toys for posterity.
       </p>
     </header>
 
@@ -256,8 +314,61 @@
     </main>
 
     <footer>
-      <a href="https://github.com/adiwastu">GitHub</a>
-      <a href="mailto:wasturaka@gmail.com">Contact</a>
+      <span>© sable mill</span>
+      <button id="copy-email" class="copy-email" type="button">
+        <svg
+          width="20"
+          height="16"
+          viewBox="0 0 20 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          aria-hidden="true"
+        >
+          <rect x="1" y="1" width="18" height="14" />
+          <path d="M1 2l9 7 9-7" />
+        </svg>
+        <span>copy email</span>
+      </button>
     </footer>
+
+    <div id="toast" class="toast" role="status" hidden>
+      <span>Email copied</span>
+      <a class="toast-cta" href="mailto:wasturaka@gmail.com"
+        >Open email app</a
+      >
+    </div>
+
+    <script>
+      const copyBtn = document.getElementById("copy-email");
+      const toast = document.getElementById("toast");
+      const EMAIL = "wasturaka@gmail.com";
+      let toastTimer;
+
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(EMAIL);
+        } catch {
+          // Fallback for non-secure contexts (http / file).
+          const ta = document.createElement("textarea");
+          ta.value = EMAIL;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        toast.hidden = false;
+        requestAnimationFrame(() => toast.classList.add("toast-show"));
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("toast-show");
+          setTimeout(() => {
+            toast.hidden = true;
+          }, 200);
+        }, 5000);
+      });
+    </script>
   </body>
 </html>
