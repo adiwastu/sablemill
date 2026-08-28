@@ -81,6 +81,33 @@
         line-height: 1.75;
       }
 
+      .artwork {
+        margin: 0 0 3rem;
+        border: 2px solid var(--black);
+        padding: 0.6rem 0.6rem 0.9rem;
+      }
+
+      .artwork img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .artwork figcaption {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        padding: 0.8rem 0.35rem 0;
+      }
+
+      .art-title {
+        font-weight: 600;
+      }
+
+      .art-meta {
+        color: var(--grey-3);
+      }
+
       main {
         flex: 1;
         padding-top: 2.75rem;
@@ -185,6 +212,23 @@
     </header>
 
     <main>
+      <figure class="artwork">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/U.S._Thread_Company_Mills,_Willimantic,_Connecticut_F-024720-20121105.jpg?width=1200"
+          alt="U.S. Thread Company Mills, Willimantic, Connecticut — oil painting by Julian Alden Weir"
+          loading="lazy"
+        />
+        <figcaption>
+          <span class="art-title"
+            >U.S. Thread Company Mills, Willimantic, Connecticut</span
+          >
+          <span class="art-meta"
+            >Julian Alden Weir, c. 1893/1897 — oil on canvas · National Gallery
+            of Art, Washington</span
+          >
+        </figcaption>
+      </figure>
+
       <section>
         <h2>Works</h2>
         <div class="works">
