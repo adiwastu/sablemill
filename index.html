@@ -380,8 +380,8 @@
       const progressFill = document.getElementById("toast-progress-fill");
       const EMAIL = "wasturaka@gmail.com";
       const NAV_DURATION = 5000; // fake "loading" animation length
-      const NAV_OPEN_MARGIN = 200; // open slightly early to stay in the user-activation window
       let toastTimer;
+      let pendingPopup = null;
 
       function hideToast() {
         toast.classList.remove("toast-show");
@@ -411,7 +411,7 @@
         toastTimer = setTimeout(() => {
           if (onDone) onDone();
           hideToast();
-        }, progress ? NAV_DURATION - NAV_OPEN_MARGIN : NAV_DURATION);
+        }, NAV_DURATION);
       }
 
       copyBtn.addEventListener("click", async () => {
@@ -435,11 +435,29 @@
         card.addEventListener("click", (e) => {
           e.preventDefault();
           const url = new URL(card.href, window.location.href);
+          // Open the tab NOW, synchronously inside the user gesture, so no
+          // popup blocker (Firefox especially) can reject it. It starts
+          // blank; we navigate it once the fake loading animation finishes.
+          if (pendingPopup && !pendingPopup.closed) {
+            try {
+              pendingPopup.close();
+            } catch {}
+          }
+          pendingPopup = window.open("", "_blank");
           showToast(
             `Heading to <strong class="toast-domain">${url.hostname}</strong>&hellip;`,
             {
               progress: true,
-              onDone: () => window.open(url.href, "_blank", "noopener"),
+              onDone: () => {
+                if (pendingPopup && !pendingPopup.closed) {
+                  pendingPopup.location.href = url.href;
+                } else {
+                  // Popup blocked anyway (e.g. strict browser settings):
+                  // fall back to navigating this tab.
+                  window.location.href = url.href;
+                }
+                pendingPopup = null;
+              },
             },
           );
         });
