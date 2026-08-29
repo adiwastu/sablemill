@@ -75,6 +75,14 @@
         color: var(--black);
       }
 
+      /* Outlined (hollow) letters instead of the solid fill. */
+      @supports (-webkit-text-stroke: 1px var(--black)) {
+        h1 {
+          color: transparent;
+          -webkit-text-stroke: 2px var(--black);
+        }
+      }
+
       .tagline {
         margin: 1rem auto 0;
         max-width: 54ch;
