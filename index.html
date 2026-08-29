@@ -151,6 +151,13 @@
         background: var(--grey-1);
       }
 
+      .card-thumb {
+        display: block;
+        width: calc(100% + 2.8rem);
+        margin: -1.25rem -1.4rem 1rem;
+        border-bottom: 2px solid var(--black);
+      }
+
       .card h3 {
         margin: 0 0 0.3rem;
         font-size: 1rem;
@@ -333,6 +340,12 @@
         <h2>works</h2>
         <div class="works">
           <a class="card" href="https://scrambler.sablemill.is-a.dev">
+            <img
+              class="card-thumb"
+              src="https://s0.wp.com/mshots/v1/https://scrambler.sablemill.is-a.dev?w=600"
+              alt="Snapshot of scrambler.sablemill.is-a.dev"
+              loading="lazy"
+            />
             <h3>scrambler</h3>
             <p>
               Random-state 3&times;3 scrambles with custom holding orientation,
@@ -342,11 +355,23 @@
             <span class="tag">typescript</span>
           </a>
           <a class="card" href="https://geararea-www.wasturaka.workers.dev/">
+            <img
+              class="card-thumb"
+              src="https://s0.wp.com/mshots/v1/https://geararea-www.wasturaka.workers.dev?w=600"
+              alt="Snapshot of geararea-www.wasturaka.workers.dev"
+              loading="lazy"
+            />
             <h3>Gear Area</h3>
             <p>Tools and gear — a new work in progress.</p>
             <span class="tag">go</span>
           </a>
           <a class="card" href="https://gitarisina.com">
+            <img
+              class="card-thumb"
+              src="https://s0.wp.com/mshots/v1/https://gitarisina.com?w=600"
+              alt="Snapshot of gitarisina.com"
+              loading="lazy"
+            />
             <h3>GitarisINA</h3>
             <p>An online shop.</p>
             <span class="tag">go</span>
