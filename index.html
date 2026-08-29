@@ -75,14 +75,6 @@
         color: var(--black);
       }
 
-      /* Outlined (hollow) letters instead of the solid fill. */
-      @supports (-webkit-text-stroke: 1px var(--black)) {
-        h1 {
-          color: transparent;
-          -webkit-text-stroke: 1px var(--black);
-        }
-      }
-
       .tagline {
         margin: 1rem auto 0;
         max-width: 54ch;
@@ -92,30 +84,32 @@
       }
 
       .artwork {
+        display: block;
+        width: 100%;
         margin: 0 0 3rem;
         border: 2px solid var(--black);
-        padding: 0.6rem 0.6rem 0.9rem;
+        padding: 0.6rem;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      .artwork:hover {
+        border-color: var(--grey-2);
+      }
+
+      /* GOV.UK focus style */
+      .artwork:focus-visible {
+        outline: 3px solid #ffdd00;
+        outline-offset: 2px;
       }
 
       .artwork img {
         display: block;
         width: 100%;
         height: auto;
-      }
-
-      .artwork figcaption {
-        display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
-        padding: 0.8rem 0.35rem 0;
-      }
-
-      .art-title {
-        font-weight: 600;
-      }
-
-      .art-meta {
-        color: var(--grey-3);
       }
 
       main {
@@ -126,7 +120,8 @@
 
       h2 {
         font-size: 1.5rem;
-        font-weight: 700;
+        font-weight: 400;
+        font-family: "Bagel Fat One", sans-serif;
         letter-spacing: -0.02em;
         color: var(--black);
         margin: 0 0 1rem;
@@ -160,7 +155,7 @@
         margin: 0 0 0.3rem;
         font-size: 1rem;
         font-weight: 600;
-        color: var(--blue);
+        color: var(--black);
         text-decoration: underline;
         text-underline-offset: 2px;
       }
@@ -183,14 +178,6 @@
         color: var(--grey-3);
       }
 
-      .soon {
-        color: var(--grey-2);
-        font-size: 1rem;
-        margin: 1.25rem 0 0;
-        font-family: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui,
-          sans-serif;
-      }
-
       footer {
         width: 100%;
         max-width: none;
@@ -200,6 +187,11 @@
         text-align: center;
         border-top: 2px solid var(--black);
         margin-top: 3rem;
+      }
+
+      footer span {
+        font-family: "Bagel Fat One", sans-serif;
+        font-weight: 400;
       }
 
       .copy-email {
@@ -324,46 +316,42 @@
     </header>
 
     <main>
-      <figure class="artwork">
+      <button
+        id="artwork"
+        class="artwork"
+        type="button"
+        aria-label="Show artwork details"
+      >
         <img
           src="https://commons.wikimedia.org/wiki/Special:FilePath/U.S._Thread_Company_Mills,_Willimantic,_Connecticut_F-024720-20121105.jpg?width=1200"
           alt="U.S. Thread Company Mills, Willimantic, Connecticut — oil painting by Julian Alden Weir"
           loading="lazy"
         />
-        <figcaption>
-          <span class="art-title"
-            >U.S. Thread Company Mills, Willimantic, Connecticut</span
-          >
-          <span class="art-meta"
-            >Julian Alden Weir, c. 1893/1897 — oil on canvas · National Gallery
-            of Art, Washington</span
-          >
-        </figcaption>
-      </figure>
+      </button>
 
       <section>
-        <h2>Works</h2>
+        <h2>works</h2>
         <div class="works">
           <a class="card" href="https://scrambler.sablemill.is-a.dev">
-            <h3>Rubik&rsquo;s Cube Scrambler</h3>
+            <h3>scrambler</h3>
             <p>
               Random-state 3&times;3 scrambles with custom holding orientation,
               built with cubing.js and Vite.
             </p>
             <span class="tag">toy app</span>
+            <span class="tag">typescript</span>
           </a>
           <a class="card" href="https://geararea-www.wasturaka.workers.dev/">
             <h3>Gear Area</h3>
             <p>Tools and gear — a new work in progress.</p>
-            <span class="tag">in progress</span>
+            <span class="tag">go</span>
           </a>
           <a class="card" href="https://gitarisina.com">
-            <h3>Gitarisina</h3>
+            <h3>GitarisINA</h3>
             <p>An online shop.</p>
-            <span class="tag">shop</span>
+            <span class="tag">go</span>
           </a>
         </div>
-        <p class="soon">more coming soon&hellip;</p>
       </section>
     </main>
 
@@ -461,6 +449,12 @@
             },
           );
         });
+      });
+
+      document.getElementById("artwork").addEventListener("click", () => {
+        showToast(
+          "U.S. Thread Company Mills, Willimantic, Connecticut &mdash; Julian Alden Weir",
+        );
       });
     </script>
   </body>
