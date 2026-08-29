@@ -20,7 +20,7 @@
     />
     <style>
       :root {
-        --black: #0b0c0c;
+        --black: #282828;
         --accent: #a44a26; /* burnt copper */
         --grey-1: #f3f0ec;
         --grey-2: #b8afa6;
@@ -72,7 +72,7 @@
         font-size: clamp(2.6rem, 7vw, 4rem);
         letter-spacing: -0.02em;
         line-height: 1;
-        color: var(--black);
+        color: var(--accent);
       }
 
       .tagline {
@@ -130,7 +130,7 @@
 
       .works {
         display: grid;
-        gap: 0;
+        gap: 0.8rem;
       }
 
       .card {
@@ -143,10 +143,6 @@
         transition: background 0.1s;
       }
 
-      .card + .card {
-        border-top: none;
-      }
-
       .card:hover {
         background: var(--grey-1);
         border-color: var(--accent);
@@ -157,8 +153,6 @@
         font-size: 1rem;
         font-weight: 600;
         color: var(--black);
-        text-decoration: underline;
-        text-underline-offset: 2px;
       }
 
       .card p {
@@ -171,49 +165,44 @@
         display: inline-block;
         margin-top: 0.65rem;
         padding: 0.15rem 0.55rem;
-        background: var(--grey-1);
+        background: var(--accent);
         border: 1px solid var(--accent);
         font-family: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui,
           sans-serif;
         font-size: 1rem;
-        color: var(--accent);
+        color: var(--white);
       }
 
       footer {
         width: 100%;
         max-width: none;
-        padding: 2.5rem 1.5rem;
+        padding: 1.25rem 1.5rem;
         color: var(--grey-3);
         font-size: 1rem;
         text-align: center;
         border-top: 2px solid var(--black);
-        margin-top: 3rem;
-      }
-
-      footer span {
-        font-family: "Bagel Fat One", sans-serif;
-        font-weight: 400;
+        margin-top: 2.5rem;
       }
 
       .copy-email {
         appearance: none;
-        background: none;
-        border: none;
-        padding: 0;
+        border: 2px solid var(--black);
+        background: var(--black);
+        color: var(--white);
+        padding: 0.45rem 0.75rem;
         margin: 1.5rem 0 0;
         font-family: inherit;
         font-size: 1rem;
-        color: var(--accent);
-        text-decoration: underline;
-        text-underline-offset: 2px;
+        line-height: 1;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 0.45rem;
+        justify-content: center;
       }
 
       .copy-email:hover {
-        color: var(--black);
+        background: var(--accent);
+        border-color: var(--accent);
       }
 
       /* GOV.UK focus style */
@@ -299,7 +288,12 @@
         In heraldry, sable is the deepest black. Sable Mill mills tools and
         toys for posterity.
       </p>
-      <button id="copy-email" class="copy-email" type="button">
+      <button
+        id="copy-email"
+        class="copy-email"
+        type="button"
+        aria-label="Copy email address"
+      >
         <svg
           width="20"
           height="16"
@@ -312,7 +306,6 @@
           <rect x="1" y="1" width="18" height="14" />
           <path d="M1 2l9 7 9-7" />
         </svg>
-        <span>copy email</span>
       </button>
     </header>
 
