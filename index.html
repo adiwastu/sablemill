@@ -422,10 +422,14 @@
             {
               progress: true,
               onDone: () => {
-                // 3.5s is still inside the browser's ~5s user-activation
-                // window, so this popup is allowed (no blank tab up front).
-                const popup = window.open(url.href, "_blank", "noopener");
-                if (!popup) {
+                // NB: do NOT pass "noopener" here — with noopener, window.open
+                // always returns null, which would trip the fallback below and
+                // navigate THIS tab too. Open normally, then sever the opener
+                // relationship manually.
+                const popup = window.open(url.href, "_blank");
+                if (popup) {
+                  popup.opener = null;
+                } else {
                   // Strict popup settings: fall back to this tab.
                   window.location.href = url.href;
                 }
