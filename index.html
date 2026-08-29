@@ -21,11 +21,11 @@
     <style>
       :root {
         --black: #0b0c0c;
-        --blue: #1d70b8;
-        --grey-1: #f3f2f0;
-        --grey-2: #b1b4b6;
-        --grey-3: #505a5f;
-        --white: #ffffff;
+        --accent: #a44a26; /* burnt copper */
+        --grey-1: #f3f0ec;
+        --grey-2: #b8afa6;
+        --grey-3: #57504a;
+        --white: #fdfcfb;
       }
 
       * {
@@ -97,7 +97,7 @@
       }
 
       .artwork:hover {
-        border-color: var(--grey-2);
+        border-color: var(--accent);
       }
 
       /* GOV.UK focus style */
@@ -149,6 +149,7 @@
 
       .card:hover {
         background: var(--grey-1);
+        border-color: var(--accent);
       }
 
       .card h3 {
@@ -171,11 +172,11 @@
         margin-top: 0.65rem;
         padding: 0.15rem 0.55rem;
         background: var(--grey-1);
-        border: 1px solid var(--grey-2);
+        border: 1px solid var(--accent);
         font-family: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui,
           sans-serif;
         font-size: 1rem;
-        color: var(--grey-3);
+        color: var(--accent);
       }
 
       footer {
@@ -202,7 +203,7 @@
         margin: 1.5rem 0 0;
         font-family: inherit;
         font-size: 1rem;
-        color: var(--blue);
+        color: var(--accent);
         text-decoration: underline;
         text-underline-offset: 2px;
         cursor: pointer;
@@ -229,7 +230,7 @@
         right: 0;
         width: 100%;
         background: var(--white);
-        border-bottom: 2px solid var(--black);
+        border-bottom: 2px solid var(--accent);
         padding: 0.9rem 1.5rem 1.9rem;
         display: flex;
         align-items: center;
@@ -252,7 +253,7 @@
       }
 
       .toast-cta {
-        color: var(--blue);
+        color: var(--accent);
         text-decoration: underline;
         text-underline-offset: 2px;
         white-space: nowrap;
@@ -281,7 +282,7 @@
       .toast-progress-fill {
         height: 100%;
         width: 0%;
-        background: var(--black);
+        background: var(--accent);
       }
 
       .toast-domain {
