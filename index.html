@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fira+Code:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -152,16 +152,8 @@
         font-size: 1rem;
       }
 
-      .tag {
-        display: inline-block;
-        margin-top: 0.65rem;
-        padding: 0.15rem 0.55rem;
-        background: var(--accent);
-        border: 1px solid var(--accent);
-        font-family: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui,
-          sans-serif;
-        font-size: 1rem;
-        color: var(--white);
+      .mono {
+        font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
       }
 
       footer {
@@ -317,23 +309,26 @@
       <section>
         <div class="works">
           <a class="card" href="https://scrambler.sablemill.is-a.dev">
-            <h3>scrambler</h3>
+            <h3>Lazy Scrambler</h3>
             <p>
               Random-state 3&times;3 scrambles with custom holding orientation,
-              built with cubing.js and Vite.
+              powered by <span class="mono">cubing.js</span>.
             </p>
-            <span class="tag">toy app</span>
-            <span class="tag">typescript</span>
           </a>
           <a class="card" href="https://geararea-www.wasturaka.workers.dev/">
-            <h3>gear area</h3>
-            <p>Tools and gear — a new work in progress.</p>
-            <span class="tag">go</span>
+            <h3>Gear Area FJB</h3>
+            <p>
+              Secure all-users-are-sellers-and-buyers marketplace for guitar
+              effects pedals and the likes. Running with
+              <span class="mono">go</span> backend.
+            </p>
           </a>
           <a class="card" href="https://gitarisina.com">
-            <h3>gitarisina goods</h3>
-            <p>An online shop.</p>
-            <span class="tag">go</span>
+            <h3>GitarisINA Goods</h3>
+            <p>
+              Local guitar related apparel and merch shop, running with
+              <span class="mono">go</span> backend.
+            </p>
           </a>
         </div>
       </section>
